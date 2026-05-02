@@ -1,7 +1,7 @@
 # Retail Enterprise Database System
 
 ## Overview
-This project is a full-stack database application built for CSC 411/511 (Database Management Systems). It simulates a real-world retail enterprise system and provides analytical insights using SQL and a Java-based web interface.
+This project is a full-stack database application built for CSC 411 (Database Management Systems designs). It simulates a real-world retail enterprise system and provides analytical insights using SQL and a Java-based web interface.
 
 The system integrates a relational database (MySQL), advanced SQL queries, and a lightweight Java web server to deliver interactive data analysis.
 
@@ -118,5 +118,5 @@ http://localhost:8080
 
 ## Author
 Krish Karki  
-CSC 411/511 — Database Management Systems  
+CSC 411 — DBMS designs H002
 University of Southern Mississippi

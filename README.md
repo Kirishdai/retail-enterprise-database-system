@@ -1,80 +1,89 @@
-# Retail Enterprise Database Project
+# Retail Enterprise Database System
 
-## Student
-Krish Karki
+## Overview
+This project is a full-stack database application built for CSC 411/511 (Database Management Systems). It simulates a real-world retail enterprise system and provides analytical insights using SQL and a Java-based web interface.
 
-## Course
-CSC 411 / 511
+The system integrates a relational database (MySQL), advanced SQL queries, and a lightweight Java web server to deliver interactive data analysis.
 
 ---
 
-## Overview
-This project implements a retail enterprise database system that supports multiple stores, products, vendors, customers, and sales.
+## Features
+- Designed and implemented a normalized relational database schema
+- Inserted realistic sample data to simulate retail operations
+- Developed advanced SQL queries using:
+  - Joins
+  - Aggregations
+  - Window functions
+  - Common Table Expressions (CTEs)
+- Built a Java JDBC-based web application to execute queries
+- Created an interactive UI to display results dynamically
+- Performed business analytics such as:
+  - Top-selling products
+  - Store performance
+  - Brand comparison (Coke vs Pepsi)
+  - Market basket analysis
 
-The system includes:
-- ER Diagram
-- Relational Schema (MySQL)
-- Sample Data
-- Required SQL Queries
-- Java JDBC Web Application
+---
+
+## Tech Stack
+- Database: MySQL
+- Backend: Java (JDBC)
+- Web Server: Java built-in HttpServer
+- Frontend: HTML, CSS, JavaScript
+- Build Tool: Maven
 
 ---
 
 ## Project Structure
-
-courseproject/
-├── er_diagram/
-├── sql/
-├── webapp/
-├── results/
-├── report/
-├── README.md
+courseproject/ │ ├── er_diagram/ │   ├── er_diagram.drawio │   └── er_diagram.pdf │ ├── sql/ │   ├── 01_schema.sql │   ├── 02_sample_data.sql │   └── 03_required_queries.sql │ ├── webapp/ │   ├── pom.xml │   └── src/ │       ├── main/java/edu/csc411/retail/ │       └── main/resources/ │ └── README.md
 
 ---
 
 ## How to Run
 
-1. Create Database
+### 1. Setup Database
+Run the SQL files in order:
+sql 01_schema.sql 02_sample_data.sql 03_required_queries.sql 
 
-mysql -u root -p < sql/retail_enterprise_schema.sql
+### 2. Configure Database Connection
+Edit:
+webapp/src/main/resources/database.properties
 
-2. Insert Data
-
-mysql -u root -p < sql/02_insert_sample_data.sql
-
-3. Run Web Application
-
-cd webapp
-mvn clean package
-mvn exec:java
-
-Open browser:
-http://localhost:8080/
+Update:
+db.user=your_username db.password=your_password
 
 ---
 
-## Queries Implemented
+### 3. Run the Web Application
+From the webapp directory:
 
-1. Top 20 selling products per store  
-2. Top 20 selling products per state  
-3. Top 5 stores with highest sales  
-4. Coke vs Pepsi comparison  
-5. Products bought together with milk  
+bash mvn clean package java -cp target/retail-enterprise-webapp-1.0-SNAPSHOT.jar edu.csc411.retail.RetailWebServer 
 
----
-
-## Notes
-
-- INVENTORY and SALE_ITEM use composite primary keys  
-- SALE.customer_id is nullable to allow anonymous customers  
-- The web UI is used to demonstrate query results  
+Open in browser:
+http://localhost:8080
 
 ---
 
-## Technologies Used
+## Implemented Queries
 
-- MySQL  
-- Java (JDBC)  
-- Maven  
-- HTML / CSS  
-- draw.io  
+1. Top 20 selling products at each store  
+2. Top 20 selling products in each state  
+3. Top 5 stores with highest sales this year  
+4. Count of stores where Coke outsells Pepsi  
+5. Top 3 products frequently bought with milk  
+
+---
+
+## Key Learnings
+- Practical database design and normalization
+- Writing complex analytical SQL queries
+- Integrating Java with MySQL using JDBC
+- Building a lightweight web server without frameworks
+- Structuring a full-stack academic project like an industry system
+
+---
+
+## Author
+Krish Karki  
+CSC 411/511 — Database Management Systems  
+University of Southern Mississippi

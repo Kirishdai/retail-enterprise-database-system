@@ -66,18 +66,19 @@ Edit:
 webapp/src/main/resources/database.properties
 
 Update:
+```
 db.user=your_username 
 db.password=your_password
-
+```
 ---
 
 ### 3. Run the Web Application
 From the webapp directory:
 
-bash 
+```bash 
 mvn clean package
 java -cp "target/retail-enterprise-webapp-1.0-SNAPSHOT.jar:target/lib/*" edu.csc411.retail.RetailWebServer
-
+```
 Open in browser:
 http://localhost:8080
 

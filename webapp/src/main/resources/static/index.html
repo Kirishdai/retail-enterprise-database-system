@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Retail Enterprise Analytics Dashboard</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Retail Enterprise Analytics Dashboard</h1>
+      <p class="subtitle">CSC 411 — Interactive SQL Analysis using Java, JDBC, and MySQL</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="controls">
+      <h2>Available Queries</h2>
+      <p class="hint">Select a query below to analyze retail sales, products, stores, and customer baskets.</p>
+
+      <div class="button-grid">
+        <button data-query="1"><strong>Top Products per Store</strong><span>Best-selling items at each store</span></button>
+        <button data-query="2"><strong>Top Products per State</strong><span>Product performance by state</span></button>
+        <button data-query="3"><strong>Top Stores This Year</strong><span>Stores with highest revenue</span></button>
+        <button data-query="4"><strong>Coke vs Pepsi</strong><span>Stores where Coke outsells Pepsi</span></button>
+        <button data-query="5"><strong>Products Bought with Milk</strong><span>Simple market basket analysis</span></button>
+      </div>
+    </section>
+
+    <section id="status" class="status">Choose a query to begin.</section>
+
+    <section id="results" class="results">
+      <p class="empty-state">Query results will appear here.</p>
+    </section>
+  </main>
+
+  <footer>
+    <small>Queries based on <code>03_required_queries.sql</code> • Backend: Java JDBC • Database: MySQL</small>
+  </footer>
+
+  <script>
+    (function () {
+      var statusEl = document.getElementById('status');
+      var resultsEl = document.getElementById('results');
+
+      var titles = {
+        1: "Top 20 Products per Store",
+        2: "Top 20 Products per State",
+        3: "Top 5 Stores by Sales This Year",
+        4: "Stores Where Coke Outsells Pepsi",
+        5: "Top 3 Products Bought with Milk"
+      };
+
+      function setStatus(msg, type) {
+        statusEl.textContent = msg;
+        statusEl.className = "status " + (type || "");
+      }
+
+      function addTableTools(queryNumber) {
+        var table = resultsEl.querySelector("table");
+        if (!table) return;
+
+        var rows = table.querySelectorAll("tbody tr");
+        var rowCount = rows.length;
+
+        var tools = document.createElement("div");
+        tools.className = "table-tools";
+        tools.innerHTML =
+          "<span class='row-count'>" + rowCount + " row(s) returned</span>" +
+          "<input id='tableFilter' type='text' placeholder='Filter results...' />";
+
+        var title = resultsEl.querySelector(".result-title");
+        title.insertAdjacentElement("afterend", tools);
+
+        var input = document.getElementById("tableFilter");
+        input.addEventListener("input", function () {
+          var filter = input.value.toLowerCase();
+          var visible = 0;
+
+          rows.forEach(function (row) {
+            var text = row.textContent.toLowerCase();
+            var match = text.indexOf(filter) !== -1;
+            row.style.display = match ? "" : "none";
+            if (match) visible++;
+          });
+
+          tools.querySelector(".row-count").textContent =
+            visible + " of " + rowCount + " row(s) shown";
+        });
+      }
+
+      document.querySelectorAll("button[data-query]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var n = btn.getAttribute("data-query");
+
+          setStatus("Running query " + n + "...", "loading");
+          resultsEl.innerHTML = "<p class='empty-state'>Loading results...</p>";
+
+          fetch("/api/" + n)
+            .then(function (res) {
+              if (!res.ok) throw new Error("Server error while running query " + n);
+              return res.text();
+            })
+            .then(function (html) {
+              resultsEl.innerHTML =
+                "<h3 class='result-title'>" + titles[n] + "</h3>" + html;
+              addTableTools(n);
+              setStatus("Query " + n + " executed successfully.", "success");
+            })
+            .catch(function (err) {
+              resultsEl.innerHTML = "<p class='error'>No results displayed.</p>";
+              setStatus("Error: " + err.message, "error");
+            });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

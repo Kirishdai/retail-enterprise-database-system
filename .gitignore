@@ -1,0 +1,9 @@
+# Ignore build files
+webapp/target/
+
+# OS files
+.DS_Store
+
+# IDE files
+.idea/
+*.iml

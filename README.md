@@ -35,7 +35,7 @@ The system integrates a relational database (MySQL), advanced SQL queries, and a
 ---
 
 ## Project Structure
-
+```
 courseproject/
 ├── er_diagram/
 │   ├── er_diagram.drawio
@@ -48,7 +48,7 @@ courseproject/
 │   ├── pom.xml
 │   └── src/
 └── README.md
-
+```
 ---
 
 ## How to Run

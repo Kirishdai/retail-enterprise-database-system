@@ -55,21 +55,28 @@ courseproject/
 
 ### 1. Setup Database
 Run the SQL files in order:
-sql 01_schema.sql 02_sample_data.sql 03_required_queries.sql 
 
+```sql 
+01_schema.sql 
+02_sample_data.sql 
+03_required_queries.sql 
+```
 ### 2. Configure Database Connection
 Edit:
 webapp/src/main/resources/database.properties
 
 Update:
-db.user=your_username db.password=your_password
+db.user=your_username 
+db.password=your_password
 
 ---
 
 ### 3. Run the Web Application
 From the webapp directory:
 
-bash mvn clean package java -cp target/retail-enterprise-webapp-1.0-SNAPSHOT.jar edu.csc411.retail.RetailWebServer 
+bash 
+mvn clean package
+java -cp "target/retail-enterprise-webapp-1.0-SNAPSHOT.jar:target/lib/*" edu.csc411.retail.RetailWebServer
 
 Open in browser:
 http://localhost:8080

@@ -35,7 +35,20 @@ The system integrates a relational database (MySQL), advanced SQL queries, and a
 ---
 
 ## Project Structure
-courseproject/ │ ├── er_diagram/ │   ├── er_diagram.drawio │   └── er_diagram.pdf │ ├── sql/ │   ├── 01_schema.sql │   ├── 02_sample_data.sql │   └── 03_required_queries.sql │ ├── webapp/ │   ├── pom.xml │   └── src/ │       ├── main/java/edu/csc411/retail/ │       └── main/resources/ │ └── README.md
+
+```text
+courseproject/
+├── er_diagram/
+│   ├── er_diagram.drawio
+│   └── er_diagram.pdf
+├── sql/
+│   ├── 01_schema.sql
+│   ├── 02_sample_data.sql
+│   └── 03_required_queries.sql
+├── webapp/
+│   ├── pom.xml
+│   └── src/
+└── README.md
 
 ---
 

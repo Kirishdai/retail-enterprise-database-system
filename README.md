@@ -102,6 +102,19 @@ http://localhost:8080
 - Structuring a full-stack academic project like an industry system
 
 ---
+## Application Screenshots
+
+### Homepage
+![Homepage](screenshots/homepage.png)
+
+### Query 1 — Top Products per Store
+![Query 1](screenshots/query1.png)
+
+### Query 2 — Top Products per State
+![Query 2](screenshots/query2.png)
+
+### Query 3 — Top Stores This Year
+![Query 3](screenshots/query3.png)
 
 ## Author
 Krish Karki  
